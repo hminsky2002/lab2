@@ -65,7 +65,16 @@ void nru_pt_update(int page, int R, int M)
 /* output: frame of page to be replaced */
 int aging()
 {
-  
+  int i, min = page_table[0].counter;
+  for(i = 1; i < 21; i++){
+    if(page_table[i].counter < page_table[min].counter){
+      min = i;
+    }
+    else if(page_table[i].counter < page_table[min].counter){
+      return min;
+    }
+  }
+  return min;
   
 }
 /* ************************************************************* */
@@ -75,7 +84,17 @@ int aging()
    This information will be used later for page replacement */
 void aging_pt_update(int page)
 {
-
+  for(int i = 0; i < 21; i++){
+    if(i == page){
+      page_table[i].counter >> 1;
+      page_table[i].counter += page_table[i].R;
+    }
+    else if (mem[i]){
+      page_table[i].counter >> 1;
+      page_table[i].counter += page_table[i].R;
+      page_table[i].R = 0;
+    }
+  }
   
 }
 /* **************** End of your code *************** */
