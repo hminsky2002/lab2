@@ -34,18 +34,27 @@ struct entry page_table[21]; //The page table
 int nru()
 {
   unsigned i;
-   
-  for(i = 0; i < 21; i++){
-    if(page_table[i].M == 1){
+  
+  for(i = 0; i < mem_size; i++){
+    if(page_table[mem[i]].R == 0 && page_table[mem[i]].M == 0){
       return i;
-    }
+      }
   }
-  for(i = 0; i < 21; i++){
-    if(page_table[i].R == 0 && page_table[i].M == 0){
+  for(i = 0; i < mem_size; i++){
+    if(page_table[mem[i]].R == 0 && page_table[mem[i]].M == 1){
       return i;
-    }
+      }
   }
-
+  for(i = 0; i < mem_size; i++){
+    if(page_table[mem[i]].R == 1 && page_table[mem[i]].M == 0){
+      return i;
+      }
+  }
+  for(i = 0; i < mem_size; i++){
+    if(page_table[mem[i]].R == 1 && page_table[mem[i]].M == 1){
+      return i;
+      }
+  }
 }
 
 /* ************************************************************* */
