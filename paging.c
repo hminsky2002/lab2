@@ -33,7 +33,19 @@ struct entry page_table[21]; //The page table
 /* output: frame of page to be replaced */
 int nru()
 {
-  
+  unsigned i;
+   
+  for(i = 0; i < 21; i++){
+    if(page_table[i].M == 1){
+      return i;
+    }
+  }
+  for(i = 0; i < 21; i++){
+    if(page_table[i].R == 0 && page_table[i].M == 0){
+      return i;
+    }
+  }
+
 }
 
 /* ************************************************************* */
@@ -45,8 +57,8 @@ int nru()
    This information will be used later for page replacement */
 void nru_pt_update(int page, int R, int M)
 {
-  
- 
+  page_table[page].R = R;
+  page_table[page].M = M;
 }
 /* ********************** aging replacement policy **************** */
 /* input: none */
