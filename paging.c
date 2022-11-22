@@ -79,7 +79,7 @@ int aging()
     if(page_table[i].counter < page_table[min].counter){
       min = i;
     }
-    else if(page_table[i].counter < page_table[min].counter){
+    else if(page_table[i].counter == page_table[min].counter){
       return min;
     }
   }
@@ -93,15 +93,15 @@ int aging()
    This information will be used later for page replacement */
 void aging_pt_update(int page)
 {
-  for(int i = 0; i < 21; i++){
+  for(int i = 0; i < mem_size; i++){
     if(i == page){
-      page_table[i].counter >> 1;
-      page_table[i].counter += page_table[i].R;
+      page_table[mem[i]].counter >> 1;
+      page_table[mem[i]].counter += page_table[i].R;
     }
     else if (mem[i]){
-      page_table[i].counter >> 1;
-      page_table[i].counter += page_table[i].R;
-      page_table[i].R = 0;
+      page_table[mem[i]].counter >> 1;
+      page_table[mem[i]].counter += page_table[i].R;
+      page_table[mem[i]].R = 0;
     }
   }
   
