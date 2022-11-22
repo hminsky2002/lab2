@@ -76,11 +76,8 @@ int aging()
 {
   int i, min = 0;
   for(i = 0; i < mem_size; i++){
-    if((int)page_table[mem[i]].counter < page_table[min].counter){
-      min = i;
-    }
-    else if((int)page_table[mem[i]].counter == page_table[min].counter){
-      return min;
+    if(page_table[mem[i]].counter < page_table[min].counter){
+      min = mem[i];
     }
   }
   return min;
