@@ -34,7 +34,6 @@ struct entry page_table[21]; //The page table
 int nru()
 {
   
-  
 }
 
 /* ************************************************************* */
@@ -240,10 +239,10 @@ int main(int argc, char * argv[])
 			page_table[current].counter = 0; // counter can be neglected in the nru policy.
 	    }
 	    else //page not in memory and memory is not full
-		{
+		  {
 			frame = insert(current);
 			nru_pt_update(current, 1-type, type);
-		}
+		  }
 	      break;
 	     
       case 1: //aging  
