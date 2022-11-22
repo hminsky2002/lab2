@@ -93,12 +93,16 @@ void aging_pt_update(int page)
   for(int i = 0; i < mem_size; i++){
     if(mem[i] == page){
       page_table[mem[i]].counter = (int)page_table[mem[i]].counter >> 1;
+      printf("%u \n",page_table[mem[i]].counter);
       page_table[mem[i]].counter += page_table[i].R;
+      printf("%u \n",page_table[mem[i]].counter);
     }
     else{
       page_table[mem[i]].counter = (int)page_table[mem[i]].counter >> 1;
+      printf("%u \n ",page_table[mem[i]].counter);
       page_table[mem[i]].counter += page_table[i].R;
       page_table[mem[i]].R = 0;
+      printf("%u \n",page_table[mem[i]].counter);
     }
   }
   
