@@ -95,11 +95,11 @@ void aging_pt_update(int page)
 {
   for(int i = 0; i < mem_size; i++){
     if(mem[i] == page){
-      page_table[mem[i]].counter >> 1;
+      (int)page_table[mem[i]].counter >> 1;
       page_table[mem[i]].counter += page_table[i].R;
     }
     else if (mem[i]){
-      page_table[mem[i]].counter >> 1;
+      (int)page_table[mem[i]].counter >> 1;
       page_table[mem[i]].counter += page_table[i].R;
       page_table[mem[i]].R = 0;
     }
